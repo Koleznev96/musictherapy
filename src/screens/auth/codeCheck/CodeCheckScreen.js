@@ -1,4 +1,4 @@
-import React, {useContext, useCallback, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
     Text,
     View,
@@ -6,17 +6,14 @@ import {
     TouchableOpacity,
     ImageBackground,
 } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import {AuthContext} from "../../../context/authContext";
 import {useHttp} from "../../../hooks/http.hook";
 import {styles} from "./useStyles";
 import GlobalStyle from "../../../components/GlobalStyle";
-import { GlobalSvgSelector } from '../../../assets/GlobalSvgSelector';
-import {httpServer} from "../../../../const";
 import {HeaderAuth} from "../../../components/headerAuth/HeaderAuth";
-import { ButtonFull } from '../../../components/buttonFull/ButtonFull';
+import {ButtonFull} from '../../../components/buttonFull/ButtonFull';
 import {InputFull} from '../../../components/inputFull/InputFull';
-
 
 
 function CodeCheckScreen ({ navigation, route }) {
@@ -34,7 +31,6 @@ function CodeCheckScreen ({ navigation, route }) {
             return setErrorField('Введите код');
         }
         setErrorField('');
-        // auth.login('fdgdfs', reg_data.email, reg_data.password);
         try {
             const data = await request(`/api/auth/code_check`, 'POST', {...reg_data, tokenCode, code});
             console.log('ppp-', data)
@@ -59,12 +55,12 @@ function CodeCheckScreen ({ navigation, route }) {
     }
 
     return (
-        <SafeAreaView
+        <ImageBackground
+            source={require('../../../assets/images/background.jpg')}
             style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
         >
-            <ImageBackground
-            source={require('../../../assets/images/background.jpg')}
-            style={{width: '100%', height: '100%', alignItems: 'center'}}
+            <SafeAreaView
+                style={{width: '100%', height: '100%', alignItems: 'center'}}
             > 
                 <HeaderAuth />
                 <Text style={[GlobalStyle.CustomFontRegular, styles.text_foot]}>
@@ -111,8 +107,8 @@ function CodeCheckScreen ({ navigation, route }) {
                         </TouchableOpacity>  
                     </View>
                 </ScrollView>
-            </ImageBackground>
-        </SafeAreaView>
+            </SafeAreaView>
+        </ImageBackground>
     )
 }
 

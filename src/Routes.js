@@ -25,8 +25,20 @@ import { ColorsStyles } from './constants/ColorsStyles';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+const forFade = ({ current }) => ({ 
+  cardStyle: { 
+    opacity: current.progress, 
+  }, 
+});
+
 const HomeRoutes = () => (
-  <Stack.Navigator initialRouteName='Start'>
+  <Stack.Navigator 
+    initialRouteName='Start'
+    screenOptions={{ 
+      headerShown: false, 
+      cardStyleInterpolator: forFade, 
+    }}
+  >
     <Tab.Screen name='Start' component={StartScreen} options={{ headerShown: false, tabBarLabel: 'Elsadchess' }}/>
     <Tab.Screen name='Classic' component={ClassicScreen} options={{ headerShown: false, tabBarLabel: 'Elsadchess' }}/>
     <Tab.Screen name='Meditation' component={MeditationScreen} options={{ headerShown: false, tabBarLabel: 'Elsadchess' }}/>
@@ -46,8 +58,12 @@ const StackRoutes = () => (
         backgroundColor: ColorsStyles.backgroundFooter,
         borderTopWidth: 3,
         borderColor: ColorsStyles.colorHr,
-        height: 60,
+        minHeight: 60,
       },
+    }}
+    screenOptions={{ 
+      headerShown: false, 
+      cardStyleInterpolator: forFade, 
     }}
     screenOptions={({ route }) => ({
       tabBarIcon: ({ focused, color, size }) => {
@@ -90,13 +106,30 @@ const StackRoutes = () => (
 
 export const Routes = isAuthenticated => {
   return ( 
-    <NavigationContainer>
+    <NavigationContainer
+      screenOptions={{ 
+        headerShown: false, 
+        cardStyleInterpolator: forFade, 
+      }}
+    >
       {isAuthenticated ? (
-        <Stack.Navigator initialRouteName='Root'>
+        <Stack.Navigator 
+          initialRouteName='Root' 
+          screenOptions={{ 
+            headerShown: false, 
+            cardStyleInterpolator: forFade, 
+          }}
+        >
           <Stack.Screen name='Root' component={StackRoutes} options={{ headerShown: false }}/>
         </Stack.Navigator>
       ) : ( 
-        <Stack.Navigator initialRouteName='Splash'>
+        <Stack.Navigator 
+          initialRouteName='Splash'
+          screenOptions={{ 
+            headerShown: false, 
+            cardStyleInterpolator: forFade, 
+          }}
+        >
           <Stack.Screen name='Splash' component={SplashScreen} options={{ headerShown: false }}/>
           <Stack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }}/>
           <Stack.Screen name='Register' component={RegisterScreen} options={{ headerShown: false }}/>

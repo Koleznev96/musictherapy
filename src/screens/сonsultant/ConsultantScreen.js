@@ -52,12 +52,12 @@ function ConsultantScreen ({ navigation }) {
     }
 
     return (
-        <SafeAreaView
+        <ImageBackground
+            source={require('../../assets/images/background.jpg')}
             style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
         >
-            <ImageBackground
-            source={require('../../assets/images/background.jpg')}
-            style={{width: '100%', height: '100%', alignItems: 'center'}}
+            <SafeAreaView
+                style={{width: '100%', height: '100%', alignItems: 'center'}}
             > 
                 <HeaderRoot data={{label: 'КОНСУЛЬТАНТ'}}/>
                 <ScrollView style={styles.scroll} 
@@ -101,8 +101,8 @@ function ConsultantScreen ({ navigation }) {
                     © www.MusicTherapy.by
                     </Text>
                 </View>
-            </ImageBackground>
-        </SafeAreaView>
+            </SafeAreaView>
+        </ImageBackground>
     )
 }
 

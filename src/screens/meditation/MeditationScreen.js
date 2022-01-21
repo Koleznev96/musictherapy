@@ -153,17 +153,18 @@ function MeditationScreen ({ navigation }) {
     // const title = 'My video title'
 
     return (
-        <SafeAreaView
-            style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
-        >
-            <ImageBackground
+        <ImageBackground
             source={require('../../assets/images/background-img.jpg')}
-            style={{width: '100%', height: '100%', alignItems: 'center'}}
-            > 
+            style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
+        > 
                 <ImageBackground
-                style={{width: '100%', height: '100%', alignItems: 'center'}}
-                imageStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.38)'}}
+                    style={{width: '100%', height: '100%', alignItems: 'center'}}
+                    imageStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.38)'}}
                 > 
+                    <SafeAreaView
+                        style={{width: '100%', height: '100%', alignItems: 'center'}}
+                    >
+            
                 <HeaderRoot data={{label: 'МЕДИТАЦИИ'}}/>
                 <View style={styles.block}>
                     {/* <Container style={styles.videoContainer}>
@@ -274,9 +275,9 @@ function MeditationScreen ({ navigation }) {
                         ))} */}
                     </View>
                     <View style={{height: 50, width: '100%'}} />
-                </ImageBackground>
+                </SafeAreaView>
             </ImageBackground>
-        </SafeAreaView>
+        </ImageBackground>
     )
 }
 

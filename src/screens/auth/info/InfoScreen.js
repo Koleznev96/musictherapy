@@ -1,23 +1,19 @@
-import React, {useContext, useCallback, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
     Text,
     View,
     ScrollView,
     TouchableOpacity,
     ImageBackground,
-    Keyboard
 } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import {AuthContext} from "../../../context/authContext";
 import {useHttp} from "../../../hooks/http.hook";
 import {styles} from "./useStyles";
 import GlobalStyle from "../../../components/GlobalStyle";
-import { GlobalSvgSelector } from '../../../assets/GlobalSvgSelector';
-import {httpServer} from "../../../../const";
 import {HeaderAuth} from "../../../components/headerAuth/HeaderAuth";
-import { ButtonFull } from '../../../components/buttonFull/ButtonFull';
+import {ButtonFull} from '../../../components/buttonFull/ButtonFull';
 import {InputFull} from '../../../components/inputFull/InputFull';
-
 
 
 function InfoScreen ({ navigation }) {
@@ -33,7 +29,6 @@ function InfoScreen ({ navigation }) {
             return setErrorField('Введите e-mail');
         }
         setErrorField('');
-        // setStatus(true);
         try {
             const data = await request(`/api/auth/help_password`, 'POST', {email});
             if (data.errors) {
@@ -53,12 +48,12 @@ function InfoScreen ({ navigation }) {
     }
 
     return (
-        <SafeAreaView
+        <ImageBackground
+            source={require('../../../assets/images/background.jpg')}
             style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
         >
-            <ImageBackground
-            source={require('../../../assets/images/background.jpg')}
-            style={{width: '100%', height: '100%', alignItems: 'center'}}
+            <SafeAreaView
+                style={{width: '100%', height: '100%', alignItems: 'center'}}
             > 
                 <HeaderAuth />
                 {status ? (
@@ -128,8 +123,8 @@ function InfoScreen ({ navigation }) {
                 </ScrollView>
                 </>
                 )}
-            </ImageBackground>
-        </SafeAreaView>
+            </SafeAreaView>
+        </ImageBackground>
     )
 }
 

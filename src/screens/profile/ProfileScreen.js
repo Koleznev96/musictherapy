@@ -40,9 +40,7 @@ function ProfileScreen ({ navigation }) {
     };
 
     useEffect(() => {
-        if (!!auth.token) {
-            getProfile();
-        }
+        getProfile();
     }, [auth.token]);
 
     const logoutHandler = () => {
@@ -51,13 +49,13 @@ function ProfileScreen ({ navigation }) {
         
 
     return (
-        <SafeAreaView
-            style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
-        >
-            <ImageBackground
+        <ImageBackground
             source={require('../../assets/images/background.jpg')}
+            style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
+        > 
+            <SafeAreaView
             style={{width: '100%', height: '100%', alignItems: 'center'}}
-            > 
+            >
                 <HeaderRoot data={{label: 'АККАУНТ'}}/>
                     <Text style={[GlobalStyle.CustomFontRegular, styles.text_foot]}>
                         Ваши данные
@@ -69,13 +67,13 @@ function ProfileScreen ({ navigation }) {
                         keyboardShouldPersistTaps='handled' 
                         showsVerticalScrollIndicator={false} 
                         contentContainerStyle={styles.scrollView}
-                        refreshControl={
-                            <RefreshControl
-                                refreshing={Refreshing}
-                                onRefresh={() => getProfile()}
-                                colors={[ColorsStyles.colorTextError]}
-                            />
-                        }
+                        // refreshControl={
+                        //     <RefreshControl
+                        //         refreshing={Refreshing}
+                        //         onRefresh={() => getProfile()}
+                        //         colors={[ColorsStyles.colorTextError]}
+                        //     />
+                        // }
                     >
                         <View style={styles.block}>
                             <TextFull data={{value: name}} />
@@ -89,8 +87,8 @@ function ProfileScreen ({ navigation }) {
                         <View style={{height: 50, width: '100%'}} />
                     </ScrollView>
                     )}
-            </ImageBackground>
-        </SafeAreaView>
+            </SafeAreaView>
+        </ImageBackground>
     )
 }
 

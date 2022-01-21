@@ -12,6 +12,7 @@ import { Routes } from  "./Routes";
 import { useAuth } from "./hooks/auth.hook";
 import { AuthContext } from "./context/authContext";
 import { Loader } from "./components/loader/Loader";
+import { ColorsStyles } from "./constants/ColorsStyles";
 
 
 const App = () => {
@@ -27,7 +28,7 @@ const App = () => {
   // return <Loader />
 
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider style={{backgroundColor: ColorsStyles.backgroundFooter,}}>
     <AuthContext.Provider value={{
       token, login, logout, ready
     }}>

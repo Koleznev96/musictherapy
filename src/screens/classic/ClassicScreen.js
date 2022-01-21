@@ -45,17 +45,17 @@ function ClassicScreen ({ navigation }) {
     }, [auth.token]);
 
     return (
-        <SafeAreaView
+        <ImageBackground
+            source={require('../../assets/images/background-img.jpg')}
             style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
         >
             <ImageBackground
-            source={require('../../assets/images/background-img.jpg')}
-            style={{width: '100%', height: '100%', alignItems: 'center'}}
-            > 
-                <ImageBackground
                 style={{width: '100%', height: '100%', alignItems: 'center'}}
                 imageStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.38)'}}
-                > 
+            >  
+                <SafeAreaView
+                    style={{width: '100%', height: '100%', alignItems: 'center'}}
+                >
                 <HeaderRoot data={{label: 'МЕДИТАЦИИ'}}/>
                 <View style={styles.block}>
                     {loading ? (
@@ -98,9 +98,9 @@ function ClassicScreen ({ navigation }) {
                     )}
                     </View>
                     <View style={{height: 50, width: '100%'}} />
-                </ImageBackground>
+                </SafeAreaView>
             </ImageBackground>
-        </SafeAreaView>
+        </ImageBackground>
     )
 }
 

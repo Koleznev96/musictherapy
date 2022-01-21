@@ -1,8 +1,7 @@
-import React, {useContext, useCallback, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
     Text,
     View,
-    ScrollView,
     ImageBackground,
     Image,
     TouchableOpacity
@@ -12,8 +11,6 @@ import {AuthContext} from "../../../context/authContext";
 import {useHttp} from "../../../hooks/http.hook";
 import {styles} from "./useStyles";
 import GlobalStyle from "../../../components/GlobalStyle";
-import { GlobalSvgSelector } from '../../../assets/GlobalSvgSelector';
-import {httpServer} from "../../../../const";
 import { ButtonFull } from '../../../components/buttonFull/ButtonFull';
 
 
@@ -42,13 +39,13 @@ function SplashScreen ({ navigation }) {
     }
 
     return (
-        <SafeAreaView
-            style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
-        >
-            <ImageBackground
+        <ImageBackground
             source={require('../../../assets/images/background.jpg')}
-            style={{width: '100%', height: '100%', alignItems: 'center'}}
-            > 
+            style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
+        > 
+            <SafeAreaView
+                style={{width: '100%', height: '100%', alignItems: 'center'}}
+            >
                 <View style={styles.block}>
                     <Image source={require('../../../assets/images/logo.png')} style={styles.logo}/>
                 
@@ -80,8 +77,8 @@ function SplashScreen ({ navigation }) {
                         </Text>
                     </TouchableOpacity>  
                 </View>
-            </ImageBackground>
-        </SafeAreaView>
+            </SafeAreaView>
+        </ImageBackground>
     );
 }
 

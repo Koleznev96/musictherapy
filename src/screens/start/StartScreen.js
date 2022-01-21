@@ -55,17 +55,19 @@ function StartScreen ({ navigation }) {
     }
 
     return (
-        <SafeAreaView
-            style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
-        >
-            <ImageBackground
+        
+        <ImageBackground
             source={require('../../assets/images/background-img.jpg')}
-            style={{width: '100%', height: '100%', alignItems: 'center'}}
-            > 
-                <ImageBackground
+            style={{flex: 1, justifyContent: 'space-between', alignItems: 'center'}}
+        > 
+            <ImageBackground
                 style={{width: '100%', height: '100%', alignItems: 'center'}}
                 imageStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.38)'}}
-                > 
+            > 
+                <SafeAreaView
+                    style={{ width: '100%', height: '100%',  }}
+                >
+                
                 <HeaderAuth />
                 <ScrollView style={styles.scroll} 
                     keyboardShouldPersistTaps='handled' 
@@ -97,9 +99,10 @@ function StartScreen ({ navigation }) {
                     </View>
                     <View style={{height: 50, width: '100%'}} />
                 </ScrollView>
-                </ImageBackground>
+                
+                </SafeAreaView>
             </ImageBackground>
-        </SafeAreaView>
+        </ImageBackground>
     )
 }
 
