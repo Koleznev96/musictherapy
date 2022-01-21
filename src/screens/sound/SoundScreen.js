@@ -72,6 +72,7 @@ function SoundScreen ({ navigation }) {
                         <FlatList
                             showsVerticalScrollIndicator={false}
                             style={{width: '100%'}}
+                            contentContainerStyle={{paddingBottom: 100}}
                             refreshControl={
                                 <RefreshControl
                                     refreshing={Refreshing}
@@ -99,7 +100,6 @@ function SoundScreen ({ navigation }) {
                         />
                         )}
                     </View>
-                    <View style={{height: 50, width: '100%'}} />
                 {/* </ScrollView> */}
                 </SafeAreaView>
             </ImageBackground>

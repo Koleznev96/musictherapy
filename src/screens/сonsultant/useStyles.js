@@ -15,8 +15,9 @@ export const styles = StyleSheet.create({
     },
     label: {
         fontSize: 16,
-        marginBottom: 20,
+        marginBottom: 5,
         paddingLeft: 10,
+        marginTop: 20,
     },
     item_block: {
         marginTop: 10,
@@ -28,6 +29,9 @@ export const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: 'rgba(0, 0, 0, 0.4)',
         borderRadius: 14,
+        // maxHeight: 150,
+        position: 'relative',
+        flexGrow: 1,
         // height: 130,
     },
     item_button: {
@@ -45,7 +49,7 @@ export const styles = StyleSheet.create({
         fontSize: 16,
     },
     item_scroll: {
-        maxHeight: 80,
+        width: '100%',
     },
     footer: {
         position: 'absolute',

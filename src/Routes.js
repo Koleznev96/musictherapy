@@ -19,6 +19,8 @@ import RegisterScreen from './screens/auth/register/RegisterScreen';
 import CodeCheckScreen from './screens/auth/codeCheck/CodeCheckScreen';
 import InfoScreen from './screens/auth/info/InfoScreen';
 
+import FullVideoScreen from './screens/fullVideo/FullVideoScreen';
+
 import { ColorsStyles } from './constants/ColorsStyles';
 
 
@@ -121,6 +123,7 @@ export const Routes = isAuthenticated => {
           }}
         >
           <Stack.Screen name='Root' component={StackRoutes} options={{ headerShown: false }}/>
+          <Stack.Screen name='FullVideo' component={FullVideoScreen} options={{ headerShown: false }}/>
         </Stack.Navigator>
       ) : ( 
         <Stack.Navigator 
