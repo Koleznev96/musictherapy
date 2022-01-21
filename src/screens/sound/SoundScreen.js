@@ -2,7 +2,6 @@ import React, {useContext, useEffect, useState} from 'react';
 import {
     Text,
     View,
-    ScrollView,
     TouchableOpacity,
     ImageBackground,
     Image,
@@ -52,16 +51,12 @@ function SoundScreen ({ navigation }) {
                 style={{width: '100%', height: '100%', alignItems: 'center'}}
                 imageStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.38)'}}
             > 
+                <View style={{width: '100%', height: 50, backgroundColor: ColorsStyles.backgroundFooter, position: 'absolute', top: 0}} />
                 <SafeAreaView            
                     style={{width: '100%', height: '100%', alignItems: 'center'}}
                 >
             
                 <HeaderRoot data={{label: 'ЖИВОЙ ЗВУК'}}/>
-                {/* <ScrollView style={styles.scroll} 
-                    keyboardShouldPersistTaps='handled' 
-                    showsVerticalScrollIndicator={false} 
-                    contentContainerStyle={styles.scrollView}
-                > */}
                     <View style={styles.block}>
                         <Text style={[GlobalStyle.CustomFontRegular, styles.label]}>
                             Приглашаем на ЖИВЫЕ концерты!
@@ -100,7 +95,6 @@ function SoundScreen ({ navigation }) {
                         />
                         )}
                     </View>
-                {/* </ScrollView> */}
                 </SafeAreaView>
             </ImageBackground>
         </ImageBackground>

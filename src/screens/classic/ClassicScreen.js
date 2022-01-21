@@ -60,6 +60,7 @@ function ClassicScreen ({ navigation }) {
                 style={{width: '100%', height: '100%', alignItems: 'center'}}
                 imageStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.38)'}}
             >  
+                <View style={{width: '100%', height: 50, backgroundColor: ColorsStyles.backgroundFooter, position: 'absolute', top: 0}} />
                 <SafeAreaView
                     style={{width: '100%', height: '100%', alignItems: 'center'}}
                 >
