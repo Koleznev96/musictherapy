@@ -1,0 +1,109 @@
+import React, {useContext, useCallback, useEffect, useState} from 'react';
+import {
+    Text,
+    View,
+    ScrollView,
+    TouchableOpacity,
+    ImageBackground,
+    FlatList,
+} from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import {AuthContext} from "../../context/authContext";
+import {useHttp} from "../../hooks/http.hook";
+import {styles} from "./useStyles";
+import GlobalStyle from "../../components/GlobalStyle";
+import { GlobalSvgSelector } from '../../assets/GlobalSvgSelector';
+import {HeaderRoot} from "../../components/headerRoot/HeaderRoot";
+import { ButtonFull } from '../../components/buttonFull/ButtonFull';
+import {InputFull} from '../../components/inputFull/InputFull';
+
+
+const data_list = [
+    {
+        label: 'Зачем мне это приложение?',
+        text: 'Текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст ',
+    },
+    {
+        label: 'Как работает приложение?',
+        text: 'Текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст ',
+    },
+    {
+        label: 'Как часто слушать музыку?',
+        text: 'Текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст ',
+    },
+    {
+        label: 'Индивидуальный подбор плейлистов',
+        text: 'Текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст ',
+    },
+    {
+        label: 'Связь с нами',
+        text: 'Текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст ',
+    },
+]
+
+function ConsultantScreen ({ navigation }) {
+    const auth = useContext(AuthContext);
+    const {loading, request, error, clearError} = useHttp();
+    const [activeIndex, setActiveIndex] = useState(-1);
+
+    const itemHandler = (index) => {
+        if (index === activeIndex) setActiveIndex(-1);
+        else setActiveIndex(index);
+    }
+
+    return (
+        <SafeAreaView
+            style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
+        >
+            <ImageBackground
+            source={require('../../assets/images/background.jpg')}
+            style={{width: '100%', height: '100%', alignItems: 'center'}}
+            > 
+                <HeaderRoot data={{label: 'КОНСУЛЬТАНТ'}}/>
+                <ScrollView style={styles.scroll} 
+                    keyboardShouldPersistTaps='handled' 
+                    showsVerticalScrollIndicator={false} 
+                    contentContainerStyle={styles.scrollView}
+                >
+                    <View style={styles.block}>
+                    <Text style={[GlobalStyle.CustomFontRegular, styles.label]}>
+                        Музыкотерапия - это эффуктивная методика коррекции 
+                        психо- эмоционального состояния. Рекомендуем использовать 
+                        приложение минимум 15 минут в день в течении 90 дней для 
+                        стабильного эффекта
+                    </Text>
+                        {data_list.map((item, index) => (
+                            <View style={activeIndex === index ? styles.item_block_active : styles.item_block}>
+                                <TouchableOpacity
+                                style={[styles.item_button]}
+                                onPress={() => itemHandler(index)}
+                                >
+                                    <Text style={[activeIndex === index ? GlobalStyle.CustomFontBold : GlobalStyle.CustomFontMedium, styles.item_name]}>
+                                        {item.label}
+                                    </Text>
+                                    <GlobalSvgSelector id={activeIndex === index ? 'arrow_bottom' : 'arrow_top'} />
+                                </TouchableOpacity>
+                                {activeIndex === index ? (
+                                // <ScrollView
+                                // style={styles.item_scroll}
+                                // >
+                                    <Text style={[GlobalStyle.CustomFontRegular, styles.item_text]}>
+                                        {item.text}
+                                    </Text> 
+                                ): null}
+                            </View> 
+                        ))}
+                    </View>
+                    <View style={{height: 50, width: '100%'}} />
+                </ScrollView>
+                <View style={styles.footer}> 
+                    <Text style={[GlobalStyle.CustomFontRegular, styles.button_footer_text]}>
+                    © www.MusicTherapy.by
+                    </Text>
+                </View>
+            </ImageBackground>
+        </SafeAreaView>
+    )
+}
+
+export default ConsultantScreen;
