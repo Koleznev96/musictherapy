@@ -53,6 +53,7 @@ function ProfileScreen ({ navigation }) {
             source={require('../../assets/images/background.jpg')}
             style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
         > 
+            <View style={{width: '100%', height: 50, backgroundColor: ColorsStyles.backgroundFooter, position: 'absolute', top: 0}} />
             <SafeAreaView
             style={{width: '100%', height: '100%', alignItems: 'center'}}
             >

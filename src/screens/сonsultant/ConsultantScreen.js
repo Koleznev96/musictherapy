@@ -1,21 +1,19 @@
-import React, {useContext, useCallback, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
     Text,
     View,
     ScrollView,
     TouchableOpacity,
     ImageBackground,
-    FlatList,
 } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import {AuthContext} from "../../context/authContext";
 import {useHttp} from "../../hooks/http.hook";
 import {styles} from "./useStyles";
 import GlobalStyle from "../../components/GlobalStyle";
 import { GlobalSvgSelector } from '../../assets/GlobalSvgSelector';
 import {HeaderRoot} from "../../components/headerRoot/HeaderRoot";
-import { ButtonFull } from '../../components/buttonFull/ButtonFull';
-import {InputFull} from '../../components/inputFull/InputFull';
+import { ColorsStyles } from '../../constants/ColorsStyles';
 
 
 const data_list = [
@@ -39,7 +37,7 @@ const data_list = [
         label: 'Связь с нами',
         text: 'Текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст ',
     },
-]
+];
 
 function ConsultantScreen ({ navigation }) {
     const auth = useContext(AuthContext);
@@ -56,6 +54,7 @@ function ConsultantScreen ({ navigation }) {
             source={require('../../assets/images/background.jpg')}
             style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
         >
+            <View style={{width: '100%', height: 50, backgroundColor: ColorsStyles.backgroundFooter, position: 'absolute', top: 0,}}/>
             <SafeAreaView
                 style={{width: '100%', height: '100%', alignItems: 'center'}}
             > 
