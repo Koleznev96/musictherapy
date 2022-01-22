@@ -24,19 +24,44 @@ function SoundScreen ({ navigation }) {
     const {loading, request, error, clearError} = useHttp();
     const [Refreshing, setRefreshing] = useState(false);
     const [data, setData] = useState([]);
+    const [counterPage, setCounterPage] = useState(0);
+    const [end_page, set_end_page] = useState(false);
+    const [loader, setLoader] = useState(false);
+    const [loaderPaginashion, setLoaderPaginashion] = useState(false);
 
     const getData = async () => {
+        setLoader(true);
         try {
-            const data = await request(`/api/data/live_sound`, 'GET', null, {
+            const data = await request(`/api/data/live_sound/0`, 'GET', null, {
                 Authorization: `${auth.token}`
             });
-            setData(data);
+            setData(data.data);
+            setCounterPage(data.data.length);
+            set_end_page(data.end_page);
+            setLoader(false);
         } catch (e) {}
     };
 
     useEffect(() => {
         getData();
     }, [auth.token]);
+
+    const paginashion = async () => {
+        if (end_page) {
+            return 0;
+        }
+
+        try {
+            setLoaderPaginashion(true);
+            const answer = await request(`/api/data/live_sound/${counterPage}`, 'GET', null, {
+                Authorization: `${auth.token}`
+            });
+            setData([...data, ...answer.data]);
+            setCounterPage(counterPage + answer.data.length);
+            set_end_page(answer.end_page);
+            setLoaderPaginashion(false);
+        } catch (e) {}
+    }
 
     const nextHandler = (url) => {
         Linking.openURL(url).catch(err => console.error('An error occurred', err));
@@ -61,10 +86,12 @@ function SoundScreen ({ navigation }) {
                         <Text style={[GlobalStyle.CustomFontRegular, styles.label]}>
                             Приглашаем на ЖИВЫЕ концерты!
                         </Text>
-                        {loading ? (
+                        {loader ? (
                             <LoaderIn />
                         ) : (
                         <FlatList
+                            onEndReached={paginashion}
+                            onEndReachedThreshold={0.3}
                             showsVerticalScrollIndicator={false}
                             style={{width: '100%'}}
                             contentContainerStyle={{paddingBottom: 100}}

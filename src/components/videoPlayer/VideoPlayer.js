@@ -1233,7 +1233,7 @@ export default class VideoPlayer extends Component {
             onEnd={this.events.onEnd}
             onSeek={this.events.onSeek}
             style={[styles.player.video, this.styles.videoStyle]}
-            source={this.state.status_loading ? this.props.source : ''}
+            source={this.state.status_loading ? this.props.source : null}
           />
           {this.renderError()}
           {this.renderLoader()}
