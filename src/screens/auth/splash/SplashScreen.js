@@ -4,6 +4,7 @@ import {
     View,
     ImageBackground,
     Image,
+    Linking,
     TouchableOpacity
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -55,14 +56,16 @@ function SplashScreen ({ navigation }) {
                     <Text style={[GlobalStyle.BellotaFontRegular, styles.text_foot]}>
                         Уникальные программы востановления и отдыха
                     </Text>
-
-                    <ButtonFull data={{value: 'Создать новый аккаунт', change: registerHandler, styles: {marginTop: '25%',}}} />
-                    <ButtonFull data={{value: 'Войти', change: loginHandler, styles: {marginTop: 25,}}} />
+                    <View style={styles.block_buttons}>
+                        <ButtonFull data={{value: 'Создать новый аккаунт', change: registerHandler, styles: {marginTop: '25%',}}} />
+                        <ButtonFull data={{value: 'Войти', change: loginHandler, styles: {marginTop: 25,}}} />
+                    </View>
                 </View>
 
                 <View style={styles.footer}>
                     <TouchableOpacity
                         style={[styles.button_footer]}
+                        onPress={() => Linking.openURL('https://vk.com').catch(err => console.error('An error occurred', err))}
                     >
                         <Text style={[GlobalStyle.CustomFontRegular, styles.button_footer_text]}>
                             Консультант 
@@ -71,6 +74,7 @@ function SplashScreen ({ navigation }) {
                     <View style={styles.hr} />
                     <TouchableOpacity
                         style={[styles.button_footer]}
+                        onPress={() => Linking.openURL('https://vk.com').catch(err => console.error('An error occurred', err))}
                     >
                         <Text style={[GlobalStyle.CustomFontRegular, styles.button_footer_text]}>
                             Связаться с нами

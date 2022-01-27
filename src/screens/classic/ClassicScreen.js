@@ -17,6 +17,7 @@ import {HeaderRoot} from "../../components/headerRoot/HeaderRoot";
 import VideoPlayer from "../../components/videoPlayer/VideoPlayer";
 import { ColorsStyles } from '../../constants/ColorsStyles';
 import { LoaderIn } from '../../components/loader/minLoader/LoaderIn';
+import {httpServer} from '../../../const';
 
 
 function ClassicScreen ({ navigation }) {
@@ -135,7 +136,7 @@ function ClassicScreen ({ navigation }) {
                                 }}>
                                     <VideoPlayer 
                                         isFullscreen={true}
-                                        poster={item.poster}
+                                        poster={httpServer + '/' + item.poster}
                                         paused={true}
                                         pictureInPicture={true}
                                         toggleResizeModeOnFullscreen={false}
@@ -151,7 +152,7 @@ function ClassicScreen ({ navigation }) {
                                             width: '100%',
                                             height: 200,
                                         }}
-                                        source={{uri: item.video}} 
+                                        source={{uri: httpServer + '/' + item.video}} 
                                     />
                                 </View>
                             </View>

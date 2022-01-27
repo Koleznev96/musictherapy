@@ -17,6 +17,7 @@ import GlobalStyle from "../../components/GlobalStyle";
 import {HeaderRoot} from "../../components/headerRoot/HeaderRoot";
 import { ColorsStyles } from '../../constants/ColorsStyles';
 import { LoaderIn } from '../../components/loader/minLoader/LoaderIn';
+import {httpServer} from '../../../const';
 
 
 function SoundScreen ({ navigation }) {
@@ -106,7 +107,7 @@ function SoundScreen ({ navigation }) {
                             renderItem={({item, index}) => (
                                 <View style={styles.item_block}>
                                 <Image
-                                    source={{uri: item.img}}
+                                    source={{uri: httpServer + '/' + item.img}}
                                     style={styles.item_img}
                                 />
                                 <TouchableOpacity

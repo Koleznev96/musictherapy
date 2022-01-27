@@ -5,6 +5,7 @@ import {
     ScrollView,
     TouchableOpacity,
     ImageBackground,
+    FlatList
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {AuthContext} from "../../context/authContext";
@@ -81,7 +82,9 @@ function ConsultantScreen ({ navigation }) {
                                 <Text style={[activeIndex === index ? GlobalStyle.CustomFontBold : GlobalStyle.CustomFontMedium, styles.item_name]}>
                                     {item.label}
                                 </Text>
+                                <View style={[styles.icon_arrow]}>
                                 <GlobalSvgSelector id={activeIndex === index ? 'arrow_bottom' : 'arrow_top'} />
+                                </View>
                             </TouchableOpacity>
                             {activeIndex === index ? (
                             <ScrollView

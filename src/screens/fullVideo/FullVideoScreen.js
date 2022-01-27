@@ -3,6 +3,8 @@ import {
     View,
 } from 'react-native';
 import VideoPlayer from 'react-native-video-controls';
+import {httpServer} from '../../../const';
+
 
 function FullVideoScreen ({ navigation, route }) {
     const {label, video, poster} = route.params;
@@ -18,13 +20,13 @@ function FullVideoScreen ({ navigation, route }) {
         }}>
             <VideoPlayer 
                 navigation={navigation}
-                poster={poster}
+                poster={httpServer + '/' + poster}
                 paused={true}
                 pictureInPicture={true}
                 onBack={() => exitFullHandaler()}
                 showOnStart={true}
                 disableFullscreen={true}
-                source={{uri: video}} 
+                source={{uri: httpServer + '/' + video}} 
             />
             </View>
     )

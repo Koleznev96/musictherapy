@@ -1,10 +1,11 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useRef, useEffect} from 'react';
 import {
     Text,
     View,
     ScrollView,
     TouchableOpacity,
     ImageBackground,
+    Keyboard
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {AuthContext} from "../../../context/authContext";
@@ -21,6 +22,7 @@ function LoginScreen ({ navigation }) {
     const {loading, request, error, clearError} = useHttp();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isKeyboardVisible, setKeyboardVisible] = useState(false);
     const [errorField, setErrorField] = useState({
         email: '',
         password: '',
@@ -69,6 +71,32 @@ function LoginScreen ({ navigation }) {
         navigation.navigate('Info');
     }
 
+    // const onBlur = () => setFocused(false);
+    const scrollRef = useRef();
+    const onFocus = (set) => {
+        // setFocused(true);
+        // let gin = 0;
+        // if (set === 1) gin = 50;
+        // scrollRef.current?.scrollTo({
+        //     y: gin,
+        //     animated: true,
+        // });
+    };
+
+    useEffect(() => {
+        const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
+            setKeyboardVisible(true); // or some other action
+        });
+        const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
+            setKeyboardVisible(false); // or some other action
+        });
+        
+        return () => {
+            keyboardDidHideListener.remove();
+            keyboardDidShowListener.remove();
+        };
+    }, []);
+
     return (
         <ImageBackground
             source={require('../../../assets/images/background.jpg')}
@@ -85,12 +113,13 @@ function LoginScreen ({ navigation }) {
                     keyboardShouldPersistTaps='handled' 
                     showsVerticalScrollIndicator={false} 
                     contentContainerStyle={styles.scrollView}
+                    ref={scrollRef}
                 >
                     <View style={styles.block}>
-                        <InputFull data={{value: email, change: setEmail, placeholder: 'E-mail', error: errorField.email}} />
-                        <InputFull data={{value: password, change: setPassword, placeholder: 'Пароль', error: errorField.password, secret: true}} />
+                        <InputFull data={{value: email, change: setEmail, placeholder: 'E-mail', error: errorField.email, onFocus: onFocus, valueFocus: 0}} />
+                        <InputFull data={{value: password, change: setPassword, placeholder: 'Пароль', error: errorField.password, secret: true, onFocus: onFocus, valueFocus: 1}} />
 
-                        <ButtonFull data={{value: 'Войти в аккаунт', change: AuthHandler, styles: {marginTop: '30%',}, loading: loading}} />
+                        <ButtonFull data={{value: 'Войти в аккаунт', change: AuthHandler, styles: {marginTop: isKeyboardVisible ? '5%' : '30%',}, loading: loading}} />
                         <View style={styles.footer}>
                             <TouchableOpacity
                                 style={[styles.button_footer]}

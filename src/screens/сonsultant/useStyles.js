@@ -39,7 +39,10 @@ export const styles = StyleSheet.create({
         paddingTop: 3,
         paddingBottom: 3,
         flexDirection: 'row',
-        alignItems: 'center',
+        // alignItems: 'center',
+    },
+    icon_arrow: {
+        marginTop: 8,
     },
     item_name: {
         fontSize: 18,

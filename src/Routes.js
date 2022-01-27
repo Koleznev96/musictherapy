@@ -53,14 +53,15 @@ const StackRoutes = () => (
     initialRouteName='Home'
     tabBarOptions={{
       keyboardHidesTabBar: true,
-      activeTintColor: '#4FC574',
-      inactiveTintColor: '#A3ACA6',
+      activeTintColor: ColorsStyles.colorButton,
+      inactiveTintColor: ColorsStyles.colorHr,
       height: 240,
       style: {
         backgroundColor: ColorsStyles.backgroundFooter,
         borderTopWidth: 3,
         borderColor: ColorsStyles.colorHr,
         minHeight: 60,
+        paddingBottom: 10,
       },
     }}
     screenOptions={{ 

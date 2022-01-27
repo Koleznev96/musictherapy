@@ -17,6 +17,7 @@ export const InputFull = ({ data }) => {
     return (
         <>
         <TextInput 
+        onFocus={() => data?.onFocus ? data.onFocus(data.valueFocus) : false}
         secureTextEntry={data.secret ? true : false} 
         value={data.value} 
         placeholderTextColor={'#F3F3F3'} 

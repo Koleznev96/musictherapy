@@ -19,6 +19,7 @@ import {HeaderRoot} from "../../components/headerRoot/HeaderRoot";
 import { ColorsStyles } from '../../constants/ColorsStyles';
 import { LoaderIn } from '../../components/loader/minLoader/LoaderIn';
 import VideoPlayer from "../../components/videoPlayer/VideoPlayer";
+import {httpServer} from '../../../const';
 
 
 function MeditationScreen ({ navigation }) {
@@ -137,7 +138,7 @@ function MeditationScreen ({ navigation }) {
                                 }}>
                                     <VideoPlayer 
                                         isFullscreen={true}
-                                        poster={item.poster}
+                                        poster={httpServer + '/' + item.poster}
                                         paused={true}
                                         pictureInPicture={true}
                                         toggleResizeModeOnFullscreen={false}
@@ -153,7 +154,7 @@ function MeditationScreen ({ navigation }) {
                                             width: '100%',
                                             height: 200,
                                         }}
-                                        source={{uri: item.video}} 
+                                        source={{uri: httpServer + '/' + item.video}} 
                                     />
                                 </View>
                             </View>

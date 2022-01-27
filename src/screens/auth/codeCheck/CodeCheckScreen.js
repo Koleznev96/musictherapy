@@ -33,7 +33,6 @@ function CodeCheckScreen ({ navigation, route }) {
         setErrorField('');
         try {
             const data = await request(`/api/auth/code_check`, 'POST', {...reg_data, tokenCode, code});
-            console.log('ppp-', data)
             if (data.errors) {
                 setErrorField(data.errors[0][1]);
             } else {

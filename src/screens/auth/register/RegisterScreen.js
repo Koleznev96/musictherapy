@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState, useRef} from 'react';
 import {
     Text,
     View,
@@ -134,6 +134,17 @@ function RegisterScreen ({ navigation }) {
         };
     }, []);
         
+    const scrollRef = useRef();
+    const onFocus = (set) => {
+        let gin = 0;
+        if (set === 0) gin = 60;
+        if (set === 1) gin = 120;
+        if (set === 2) gin = 180;
+        scrollRef.current?.scrollTo({
+            y: gin,
+            animated: true,
+        });
+    };
 
     return (
         <ImageBackground
@@ -151,13 +162,14 @@ function RegisterScreen ({ navigation }) {
                     keyboardShouldPersistTaps='handled' 
                     showsVerticalScrollIndicator={false} 
                     contentContainerStyle={styles.scrollView}
+                    ref={scrollRef}
                 >
                     <View style={styles.block}>
                         <InputFull data={{value: name, change: setName, placeholder: 'Имя', error: errorField.name}} />
                         <InputFull data={{value: fullName, change: setFullName, placeholder: 'Фамилия', error: errorField.fullName}} />
-                        <InputFull data={{value: telephone, change: setTelephone, placeholder: 'Телефон', error: errorField.telephone}} />
-                        <InputFull data={{value: email, change: setEmail, placeholder: 'E-mail', error: errorField.email}} />
-                        <InputFull data={{value: password, change: setPassword, placeholder: 'Пароль', error: errorField.password, secret: true}} />
+                        <InputFull data={{value: telephone, change: setTelephone, placeholder: 'Телефон', error: errorField.telephone, onFocus: onFocus, valueFocus: 0}} />
+                        <InputFull data={{value: email, change: setEmail, placeholder: 'E-mail', error: errorField.email, onFocus: onFocus, valueFocus: 1}} />
+                        <InputFull data={{value: password, change: setPassword, placeholder: 'Пароль', error: errorField.password, secret: true, onFocus: onFocus, valueFocus: 2}} />
 
                         <ButtonFull data={{value: 'Создать новый аккаунт', change: AuthHandler, styles: {marginTop: 20,}, loading: loading}} />
                         <TouchableOpacity

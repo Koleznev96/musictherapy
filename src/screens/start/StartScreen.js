@@ -27,12 +27,12 @@ const data_list = [
     {
         name: 'МЕДИТАЦИЯ',
         router: 'Meditation',
-        img: ''
+        img: require('../../assets/images/meditation.jpg')
     },
     {
         name: 'ЖИВОЙ ЗВУК',
         router: 'Sound',
-        img: ''
+        img: require('../../assets/images/sound.jpg')
     },
 ]
 

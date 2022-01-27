@@ -1,9 +1,13 @@
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet, Platform, Dimensions } from 'react-native';
 import { ColorsStyles } from "../../../constants/ColorsStyles";
 
 export const styles = StyleSheet.create({
     block: {
         marginTop: '20%',
+        alignItems: 'center',
+        width: '100%',
+    },
+    block_buttons: {
         alignItems: 'center',
         width: '75%',
     },
@@ -13,7 +17,7 @@ export const styles = StyleSheet.create({
     },
     text_glav: {
         marginTop: 25,
-        fontSize: 32,
+        fontSize: Dimensions.get('window').width > 350 ? 32 : 28,
     },
     text_foot: {
         letterSpacing: 2,
